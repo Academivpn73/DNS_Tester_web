@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>🌐 DNS Tester — Academi_vpn</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: Vazirmatn, sans-serif;
       background: linear-gradient(135deg, #0f172a, #1e293b);
       color: #fff;
       margin: 0;
-      padding: 0;
-      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
-      padding: 20px;
+      text-align: center;
+      padding: 30px 20px;
     }
-    h1 {
-      color: #38bdf8;
+    header h1 {
+      font-size: 32px;
+      background: linear-gradient(90deg, #00ff88, #38bdf8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    header p {
+      margin-top: 10px;
+      color: #a5f3fc;
     }
     .card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 12px;
-      margin: 20px auto;
-      max-width: 600px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 25px;
+      margin: auto;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    }
+    .card h2 {
+      margin-bottom: 20px;
+      color: #38bdf8;
     }
     input {
-      padding: 10px;
-      border-radius: 8px;
+      padding: 12px;
+      width: 80%;
+      border-radius: 10px;
       border: none;
-      width: 250px;
-      margin: 10px;
+      margin: 10px 0;
       font-size: 16px;
       text-align: left;
     }
     button {
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
-      border-radius: 8px;
-      background: linear-gradient(90deg, #00ff88, #38bdf8);
+      border-radius: 10px;
+      font-size: 16px;
       font-weight: bold;
+      background: linear-gradient(90deg, #00ff88, #38bdf8);
       cursor: pointer;
       transition: all 0.3s ease;
     }
@@ -54,37 +69,38 @@
     #result {
       margin-top: 20px;
       font-size: 18px;
-      color: #a5f3fc;
+      color: #f0fdfa;
     }
     footer {
-      margin-top: 40px;
-      padding: 15px;
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
       font-size: 14px;
       background: rgba(0,0,0,0.3);
     }
     footer a {
       color: #38bdf8;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>🌐 DNS Tester</h1>
-    <p>ساخته شده توسط: <b>Mahdi</b> | کانال: <a href="https://t.me/Academi_vpn" target="_blank">@Academi_vpn</a></p>
+    <p>کانال ما: <a href="https://t.me/Academi_vpn" target="_blank">@Academi_vpn</a> | ساخته شده توسط: <b>Mahdi</b></p>
   </header>
 
   <div class="card">
     <h2>تست DNS</h2>
-    <input type="text" id="dnsInput" placeholder="مثال: 8.8.8.8" />
+    <input id="dnsInput" type="text" placeholder="مثال: 8.8.8.8">
     <br>
     <button onclick="testDNS()">تست کن</button>
     <div id="result"></div>
   </div>
 
   <footer>
-    کانال ما: <a href="https://t.me/Academi_vpn" target="_blank">@Academi_vpn</a><br>
+    کانال ما: <a href="https://t.me/Academi_vpn" target="_blank">@Academi_vpn</a> <br>
     ساخته شده توسط: Mahdi
   </footer>
 
@@ -107,7 +123,7 @@
         await fetch(url, { mode: "no-cors" });
         const ms = Math.round(performance.now() - start);
         result.innerHTML = `✅ DNS ${ip} پاسخ داد — پینگ: <b>${ms} ms</b>`;
-      } catch (e) {
+      } catch {
         result.innerHTML = `❌ DNS ${ip} در دسترس نیست.`;
       }
     }
